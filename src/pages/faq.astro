@@ -10,6 +10,18 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
 
 const faqs = [
   {
+    q: `Where does ${site.city}'s tap water come from?`,
+    a: `${site.city} uses surface water from Lake Pflugerville, which is filled from the Colorado River and the Highland Lakes, plus groundwater from the Edwards Aquifer. ${site.waterAuthority} publishes the details each year in its Consumer Confidence Report.`,
+  },
+  {
+    q: `Does ${site.city}'s water report list its hardness?`,
+    a: `The city's 2024 report lists calcium at up to 40.3 ppm and magnesium at up to 16.4 ppm, which works out to about 168 mg/L or roughly 9.8 GPG. That is ${site.gpgLabel.toLowerCase()} water on the Water Quality Association scale.`,
+  },
+  {
+    q: `Why does water in ${site.city} leave white spots on glass and fixtures?`,
+    a: `The spots are calcium and magnesium left behind when ${site.city} water evaporates. At ${site.gpgLow}–${site.gpgHigh} GPG, the minerals build up quickly on shower doors, faucets, and dishwasher glassware.`,
+  },
+  {
     q: `How hard is the water in ${site.city}, ${site.stateAbbr}?`,
     a: `${site.city} water measures ${site.gpgLow}–${site.gpgHigh} grains per gallon (GPG), classified as ${site.gpgLabel}. It comes from ${site.waterSource}, managed by ${site.waterAuthority}.`,
   },

@@ -4,6 +4,18 @@ import HomeLink from "../components/HomeLink.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../lib/site";
 
+// Unregulated constituents, 2024 highs, from the City of Pflugerville
+// 2024 Consumer Confidence Report. Hardness is calculated from calcium and
+// magnesium: 2.497 x 40.3 + 4.118 x 16.4 = ~168 mg/L = ~9.8 GPG.
+const ccrReadings = [
+  { name: "Calcium", value: "40.3 ppm", note: "Primary scale-forming mineral" },
+  { name: "Magnesium", value: "16.4 ppm", note: "Second hardness mineral" },
+  { name: "Total dissolved solids", value: "432 ppm", note: "All dissolved minerals combined" },
+  { name: "Chloride", value: "59 ppm", note: "Not removed by a softener" },
+  { name: "Sulfate", value: "38 ppm", note: "Naturally occurring" },
+  { name: "Sodium", value: "27.5 ppm", note: "Natural level before softening" },
+];
+
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
   : { href: "/contact/", text: "📞 Call for a Free Consultation" };
@@ -73,6 +85,36 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   <section class="section">
     <div class="container">
       <div class="section-header">
+        <h2>What the City Report Shows About {site.city} Water</h2>
+        <p>According to the {site.city} 2024 Consumer Confidence Report, the highest readings for the minerals that drive hardness were:</p>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Mineral</th><th>2024 High</th><th>What it means</th></tr>
+        </thead>
+        <tbody>
+          {ccrReadings.map((r) => (
+            <tr><td>{r.name}</td><td>{r.value}</td><td>{r.note}</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="ccr-note">Calcium at 40.3 ppm and magnesium at 16.4 ppm add up to about 168 mg/L of total hardness, or roughly 9.8 GPG. According to {site.waterAuthority}, you can request the full report, and a free in-home test will show your exact reading at the tap.</p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Where {site.city} Water Comes From</h2>
+        <p>{site.city} drinks surface water from Lake Pflugerville and groundwater from the Edwards Aquifer, per the city's 2024 water quality report.</p>
+      </div>
+      <p>The city pumps Colorado River water into Lake Pflugerville, and that water originates in the Highland Lakes: Buchanan, Inks, LBJ, Marble Falls, Travis, and Austin. The Lower Colorado River Authority manages Lakes Travis and Buchanan under a state-approved water management plan. River and aquifer water both pick up calcium and magnesium from Central Texas limestone, which is why {site.city} homes land in the {site.gpgLabel.toLowerCase()} range. Because the blend of surface and groundwater can shift over the year, see the <a href="/free-water-test/">free in-home water test</a> for your exact reading.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
         <h2>Hardness by ZIP Code</h2>
         <p>Hardness readings can vary slightly by neighbourhood and distribution line. Approximate figures for {site.city} ZIP codes:</p>
       </div>
@@ -102,6 +144,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
 
   <style>
     .highlight td { background: var(--color-primary-light); color: var(--color-primary-dark); font-weight: 700; }
+    .ccr-note { margin-top: 16px; max-width: 70ch; }
     .final-cta { text-align: center; }
     .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
   </style>

@@ -278,19 +278,25 @@ export const siteConfig: SiteConfig = {
   domain,
 
   // Water hardness data
-  gpgLow: 14,
-  gpgHigh: 17,
-  gpgLabel: "Very Hard",
-  waterSource: "Treated surface water from the Colorado River and Lake Travis",
-  waterAuthority: "City of Pflugerville Utilities",
+  // Source: City of Pflugerville 2024 Consumer Confidence Report. Highest
+  // reported calcium 40.3 ppm + magnesium 16.4 ppm = ~168 mg/L total
+  // hardness (2.497*Ca + 4.118*Mg) = ~9.8 GPG; third-party data lists
+  // 177.5 mg/L (10.4 GPG). 9-10 GPG is "Hard" on the WQA scale (7-10.5).
+  // NOTE: the earlier 14-17 GPG figure in the boilerplate target table
+  // was not supported by the utility report and was replaced.
+  gpgLow: 9,
+  gpgHigh: 10,
+  gpgLabel: "Hard",
+  waterSource: "Lake Pflugerville surface water from the Colorado River and Highland Lakes, plus Edwards Aquifer groundwater",
+  waterAuthority: "City of Pflugerville Public Utilities",
 
   // SEO
   primaryKeyword: "pflugerville water softener",
   searchVol: 50,
-  metaDescription: "Water softener installation and repair in Pflugerville, TX. Pflugerville water tests at 14 to 17 GPG, classified Very Hard. Get a free water test and quote.",
+  metaDescription: "Water softener installation and repair in Pflugerville, TX. Pflugerville water tests at 9 to 10 GPG, classified Hard. Get a free water test and quote.",
 
   // Local data
-  population: "65,000",
+  population: "65,191",
   county: "Travis County",
   neighbourhoods: ["Falcon Pointe", "Blackhawk", "Highland Park", "Springbrook"],
   zipCodes: ["78660", "78691", "78728"],

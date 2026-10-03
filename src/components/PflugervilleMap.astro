@@ -1,45 +1,4 @@
 ---
-/**
- * CityMap.astro — Generic city neighbourhood hardness map (PROVISIONING TEMPLATE)
- *
- * This component is NOT rendered anywhere in the boilerplate. It is a
- * starting point that provisioners copy and adapt per city — see
- * PROVISION.md Step 5b ("City Map") for the full walkthrough.
- *
- * PROVISIONING INSTRUCTIONS:
- * 1. Copy this file to src/components/[City]Map.astro (e.g. MinneapolisMap.astro)
- * 2. Fill in MAP_CONFIG below with the city's centre coordinates and bounds
- * 3. Fill in the neighbourhoods array with real, verified coordinates
- *    (use OpenStreetMap to find lat/lng per neighbourhood — see PROVISION.md)
- * 4. Install leaflet: npm install leaflet @types/leaflet
- * 5. Add to astro.config.mjs: vite: { ssr: { noExternal: ['leaflet'] } }
- * 6. Add to Layout.astro head:
- *    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
- *          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
- * 7. Import and add <[City]Map /> to index.astro after the GPG stat block
- *
- * TILE LAYER NOTE (important — read before choosing a tile provider):
- * - CARTO dark tiles (basemaps.cartocdn.com): NOW REQUIRE AN API KEY, even
- *   for unauthenticated requests. Every tile returns an "API KEY REQUIRED"
- *   watermark baked into the image instead of erroring. Do NOT use CARTO.
- *   Confirmed broken via direct tile fetch, September 2026.
- * - Stadia Maps (tiles.stadiamaps.com): also requires authentication.
- * - WORKING SOLUTION: OpenStreetMap tiles with a CSS inversion filter
- *   scoped to .leaflet-tile-pane only. Markers, popups, and controls sit on
- *   separate Leaflet panes and are NOT affected by the filter.
- *   CSS: filter: invert(1) hue-rotate(190deg) brightness(1.18) contrast(0.85) saturate(0.65)
- *   This produces a dark navy map that matches the site design system.
- * See CLAUDE.md → "Map Component — Tile Layer Rule" for the same note.
- *
- * NOTE ON LEAFLET NOT BEING A BOILERPLATE DEPENDENCY:
- * This file uses a dynamic `import("leaflet")` inside the client script so
- * the boilerplate itself never needs leaflet installed — this component is
- * never rendered here, only copied out during provisioning (Step 4 above).
- * The `@ts-expect-error` above that import is intentional: it suppresses
- * the "module not found" type error until the provisioner installs the
- * package in the city site's own package.json.
- */
-
 import { site } from "../lib/site";
 ---
 
@@ -110,7 +69,7 @@ import { site } from "../lib/site";
               <div class="gpg-row">
                 <span class="gpg-number" id="report-gpg"></span>
                 <span class="gpg-unit">GPG</span>
-                <span class="gpg-badge">VERY HARD</span>
+                <span class="gpg-badge">{site.gpgLabel.toUpperCase()}</span>
               </div>
             </div>
 
@@ -514,12 +473,12 @@ import { site } from "../lib/site";
     // Find coordinates using: https://www.openstreetmap.org (right-click → Show address)
     // Find the bounding box using: https://boundingbox.klokantech.com
     // ─────────────────────────────────────────────────────────────────
-    const CITY_LAT = 0; // TODO: replace with the real city centre latitude
-    const CITY_LNG = 0; // TODO: replace with the real city centre longitude
-    const BOUNDS_SOUTH = 0; // TODO: southwest corner of the service area
-    const BOUNDS_WEST = 0;
-    const BOUNDS_NORTH = 0; // TODO: northeast corner of the service area
-    const BOUNDS_EAST = 0;
+    const CITY_LAT = 30.4394; // Pflugerville city centre (OpenStreetMap)
+    const CITY_LNG = -97.62;
+    const BOUNDS_SOUTH = 30.38; // OSM bounding box for Pflugerville, padded slightly
+    const BOUNDS_WEST = -97.69;
+    const BOUNDS_NORTH = 30.52;
+    const BOUNDS_EAST = -97.5;
 
     const MAP_CONFIG = {
       centre: [CITY_LAT, CITY_LNG] as [number, number],
@@ -532,26 +491,62 @@ import { site } from "../lib/site";
       },
     };
 
-    // ─────────────────────────────────────────────────────────────────
-    // NEIGHBOURHOOD DATA — fill this array when provisioning a new city
-    // Each entry needs: name, coords [lat, lng], gpgRange, wqaNote, issues[]
-    // Verify every coordinate using OpenStreetMap or Google Maps.
-    // Only list VERIFIED residential neighbourhoods — not roads or parks.
-    // ─────────────────────────────────────────────────────────────────
-    const NEIGHBOURHOOD_1_LAT = 0; // TODO: replace with a verified coordinate
-    const NEIGHBOURHOOD_1_LNG = 0;
+    // All Pflugerville neighbourhoods share one municipal supply, so the
+    // GPG range is the city-wide figure from the City of Pflugerville 2024
+    // Consumer Confidence Report (see site.config.ts).
+    const GPG_RANGE = "9–10";
+    const WQA_NOTE =
+      'The Water Quality Association classifies 7 to 10.5 GPG as "Hard." The City of Pflugerville 2024 water quality report puts local water at roughly 9 to 10 GPG.';
 
     const neighbourhoods: Neighbourhood[] = [
       {
-        name: "NEIGHBOURHOOD_1_NAME",
-        coords: [NEIGHBOURHOOD_1_LAT, NEIGHBOURHOOD_1_LNG],
-        gpgRange: "GPG_LOW–GPG_HIGH",
-        wqaNote:
-          'Anything above 10.5 GPG is considered "Very Hard" by the Water Quality Association.',
-        issues: ["ISSUE_1", "ISSUE_2", "ISSUE_3", "ISSUE_4"],
+        name: "Falcon Pointe",
+        coords: [30.4556, -97.5909],
+        gpgRange: GPG_RANGE,
+        wqaNote: WQA_NOTE,
+        issues: [
+          "White scale spotting on shower glass and faucets",
+          "Mineral buildup inside tankless and tank water heaters",
+          "Dishwasher film on glasses and flatware",
+          "Dry skin and stiff laundry from untreated hard water",
+        ],
       },
-      // Add one entry per neighbourhood — 4 to 8 entries recommended.
-      // Fewer entries with accurate data beats more entries with invented data.
+      {
+        name: "Blackhawk",
+        coords: [30.4692, -97.5762],
+        gpgRange: GPG_RANGE,
+        wqaNote: WQA_NOTE,
+        issues: [
+          "Irrigation and pool fill water leaving mineral crust on surfaces",
+          "Scale narrowing supply lines and fixture aerators",
+          "Reduced soap lather and heavier cleaning chores",
+          "Shortened water heater and appliance lifespan",
+        ],
+      },
+      {
+        name: "Highland Park",
+        coords: [30.4781, -97.6143],
+        gpgRange: GPG_RANGE,
+        wqaNote: WQA_NOTE,
+        issues: [
+          "Chalky residue on dishes and bathroom fixtures",
+          "Scale accumulating in washing machine and dishwasher",
+          "Hair and skin dryness after showering",
+          "Faster salt and detergent use than soft water needs",
+        ],
+      },
+      {
+        name: "Springbrook",
+        coords: [30.4759, -97.6343],
+        gpgRange: GPG_RANGE,
+        wqaNote: WQA_NOTE,
+        issues: [
+          "Mineral deposits on kitchen faucets and showerheads",
+          "Water heater scale that raises energy use",
+          "Cloudy glassware straight out of the dishwasher",
+          "Soap scum on tubs, tile, and shower doors",
+        ],
+      },
     ];
 
     // ─────────────────────────────────────────────────────────────────
@@ -560,9 +555,7 @@ import { site } from "../lib/site";
     const mapEl = document.getElementById("city-map");
     if (!mapEl) return;
 
-    // @ts-expect-error — leaflet is a per-city dependency, installed during
-    // provisioning (Step 4 in the file header comment). Not installed here.
-    const L = (await import("leaflet")).default;
+        const L = (await import("leaflet")).default;
 
     const map = L.map(mapEl, {
       center: MAP_CONFIG.centre,

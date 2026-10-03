@@ -56,6 +56,16 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
 
   <section class="section">
     <div class="container">
+      <div class="section-header">
+        <h2>Why {site.city} Water Is Hard</h2>
+        <p>According to the {site.city} 2024 water quality report, the supply carries up to 40.3 ppm of calcium and 16.4 ppm of magnesium.</p>
+      </div>
+      <p>Those two minerals account for about 168 mg/L of hardness, or roughly 9.8 GPG, which is {site.gpgLabel.toLowerCase()} on the Water Quality Association scale. They come from Lake Pflugerville's Colorado River supply and Edwards Aquifer groundwater, both of which pass through Central Texas limestone. Heating the water concentrates the effect, so water heaters, tankless units, and dishwashers show scale first. See the full <a href="/water-quality/">{site.city} water quality report</a> for the numbers behind it.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <GPGSliderMini />
     </div>
   </section>
