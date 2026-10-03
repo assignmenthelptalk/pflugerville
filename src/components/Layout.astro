@@ -114,13 +114,18 @@ const footerNavLinks = [
     <header class="site-header">
       <div class="container site-header-inner">
         <a class="logo" href="/" aria-label={`${site.businessName} home`}>
-          <svg class="logo-mark" width="36" height="36" viewBox="0 0 64 64" aria-hidden="true">
-            <rect width="64" height="64" rx="14" fill="var(--color-primary)" />
-            <path d="M32 10C32 10 18.5 27.5 18.5 38C18.5 45.7 24.5 51.5 32 51.5C39.5 51.5 45.5 45.7 45.5 38C45.5 27.5 32 10 32 10Z" fill="var(--color-primary-light)" />
-            <path d="M26 39.5C26 43.2 28.4 45.8 31.5 46.4" fill="none" stroke="var(--color-primary)" stroke-width="2.6" stroke-linecap="round" opacity="0.55" />
-            <circle cx="45" cy="17" r="5" fill="var(--color-accent)" />
+          <svg class="logo-mark" width="48" height="48" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="28" fill="#FFFFFF" stroke="var(--color-primary)" stroke-width="5" />
+            <path d="M32 11C32 11 21.5 24.5 21.5 33C21.5 38.8 26.2 43.5 32 43.5C37.8 43.5 42.5 38.8 42.5 33C42.5 24.5 32 11 32 11Z" fill="var(--color-primary)" />
+            <path d="M27 33.5C27 36.4 28.8 38.6 31.2 39.2" fill="none" stroke="var(--color-primary-light)" stroke-width="2.4" stroke-linecap="round" />
+            <path d="M2 43C13 34.5 24 36 33 41.5C42 47 53 46 62 37C60.5 45 52 54 41 53C33 52.5 28 47.5 21 47.5C14 47.5 8 49.5 2 43Z" fill="var(--color-accent)" />
+            <path d="M5 49C14 44 22 45.5 30 50C38 54.5 50 55 59 47" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" />
           </svg>
-          <span>{site.businessName}</span>
+          <span class="logo-text" aria-hidden="true">
+            {site.businessName.split(" ").map((word) => (
+              <span class="logo-line">{word}</span>
+            ))}
+          </span>
         </a>
 
         <button
@@ -295,6 +300,8 @@ const footerNavLinks = [
       }
       .logo { display: inline-flex; align-items: center; gap: 10px; }
       .logo-mark { flex-shrink: 0; }
+      .logo-text { display: flex; flex-direction: column; line-height: 1; }
+      .logo-line { font-family: var(--font-body); font-weight: 800; font-size: 0.95rem; line-height: 1.12; letter-spacing: 0.04em; text-transform: uppercase; }
       .logo:hover { color: var(--color-accent); }
       .logo:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
 
