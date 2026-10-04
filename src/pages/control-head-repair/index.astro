@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/control-head-repair-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -36,7 +37,7 @@ const faqs = [
   title={`Water Softener Control Head Repair, ${site.city}`}
   description={`Signs your water softener's control head is failing, repair vs. replacement, and what a control head repair costs in ${site.city}.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Repair", href: "/repair/" }, { label: "Control Head Repair" }]}
     heading={`Control Head Repair in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

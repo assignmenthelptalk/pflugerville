@@ -4,6 +4,7 @@ import HomeLink from "../components/HomeLink.astro";
 import GPGSliderMini from "../components/GPGSliderMini.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../lib/site";
+import headerImage from "../assets/images/comparison-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -14,7 +15,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   title={`Best Water Softener in ${site.city}, ${site.stateAbbr}`}
   description={`Salt-based vs salt-free vs reverse osmosis water softeners in ${site.city}, ${site.stateAbbr}. Which system works at ${site.gpgLow}–${site.gpgHigh} GPG. Free system recommendation with every water test.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Compare Systems" }]}
     heading={`Best Water Softener in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}
@@ -22,7 +23,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   >
     <p slot="opening">
       <HomeLink variant="naked" />
-      {" "}offers water softener system comparison and selection guidance for {site.city} homeowners. At
+      {" "}offers water softener system comparison and selection guidance for {site.city} homeowners. At{" "}
       {site.gpgLow}–{site.gpgHigh} GPG from {site.waterAuthority}, not every system works. Salt-free
       conditioners do not remove calcium and magnesium at this hardness level. Salt-based ion exchange is the
       only system that fully eliminates hardness minerals above 10 GPG. Free system recommendation included

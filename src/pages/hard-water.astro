@@ -4,6 +4,7 @@ import HomeLink from "../components/HomeLink.astro";
 import GPGSliderMini from "../components/GPGSliderMini.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../lib/site";
+import headerImage from "../assets/images/hard-water-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -14,7 +15,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   title={`Hard Water Treatment in ${site.city}, ${site.stateAbbr}`}
   description={`Hard water effects in ${site.city}, ${site.stateAbbr}. ${site.city} water tests at ${site.gpgLow}–${site.gpgHigh} GPG from ${site.waterAuthority}. Learn how hard water damages appliances and how to protect your home.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Hard Water Explained" }]}
     heading={`Hard Water Treatment in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}
@@ -22,7 +23,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   >
     <p slot="opening">
       <HomeLink variant="naked" />
-      {" "}offers hard water treatment and scale prevention services across {site.city} and {site.county}. At
+      {" "}offers hard water treatment and scale prevention services across {site.city} and {site.county}. At{" "}
       {site.gpgLow}–{site.gpgHigh} GPG from {site.waterAuthority}, calcium and magnesium deposits build up on
       fixtures, inside appliances, and inside supply lines within weeks of installation. A salt-based ion
       exchange softener removes these minerals completely at the main water entry point. Free in-home water

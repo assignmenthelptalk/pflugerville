@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/salt-free-installation-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -32,7 +33,7 @@ const faqs = [
   title={`Salt-Free Water Softener Installation in ${site.city}, ${site.stateAbbr}`}
   description={`How salt-free water conditioner installation works in ${site.city}, who it's a fit for at ${site.gpgLow}-${site.gpgHigh} GPG, and what it costs.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "Salt-Free Installation" }]}
     heading={`Salt-Free Water Conditioner Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

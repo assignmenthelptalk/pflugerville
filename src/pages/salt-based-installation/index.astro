@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/salt-based-installation-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -32,7 +33,7 @@ const faqs = [
   title={`Salt-Based Water Softener Installation in ${site.city}, ${site.stateAbbr}`}
   description={`How salt-based water softener installation works in ${site.city}, what it costs, and why ion exchange is the standard fix for ${site.gpgLow}-${site.gpgHigh} GPG water.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "Salt-Based Installation" }]}
     heading={`Salt-Based Water Softener Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

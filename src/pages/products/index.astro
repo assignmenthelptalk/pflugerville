@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/products-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -13,7 +14,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   title={`Water Softener Systems in ${site.city}, ${site.stateAbbr}`}
   description={`Recommended water softener systems for ${site.city}, ${site.stateAbbr}. Systems selected and sized for ${site.gpgLow}–${site.gpgHigh} GPG hard water from ${site.waterAuthority}.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Products" }]}
     heading={`Water Softener Systems in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}
@@ -22,7 +23,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
     <p slot="opening">
       <HomeLink variant="naked" />
       {" "}offers recommended water softener systems selected and sized for {site.city}'s {site.gpgLow}
-      –{site.gpgHigh} GPG hard water from {site.waterAuthority}. Every system listed is rated for
+      –{site.gpgHigh} GPG hard water from {site.waterAuthority}. Every system listed is rated for{" "}
       {site.gpgLabel} water at this GPG level. Salt-free conditioners are not included. They do not remove
       hardness minerals at {site.gpgLow}–{site.gpgHigh} GPG. Free sizing consultation included with every free
       water test.

@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/resin-bed-replacement-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -51,7 +52,7 @@ const faqs = [
   title={`Water Softener Resin Bed Replacement in ${site.city}, ${site.stateAbbr}`}
   description={`Signs your ${site.city} water softener's resin bed has failed, what replacement costs, and how the process works.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Repair", href: "/repair/" }, { label: "Resin Bed Replacement" }]}
     heading={`Resin Bed Replacement in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

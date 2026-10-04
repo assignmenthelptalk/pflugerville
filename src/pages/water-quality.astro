@@ -3,6 +3,7 @@ import Layout from "../components/Layout.astro";
 import HomeLink from "../components/HomeLink.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../lib/site";
+import headerImage from "../assets/images/water-quality-header.webp";
 
 // Unregulated constituents, 2024 highs, from the City of Pflugerville
 // 2024 Consumer Confidence Report. Hardness is calculated from calcium and
@@ -25,7 +26,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   title={`${site.city} Water Quality and Hardness Report`}
   description={`${site.city} water quality report. ${site.waterAuthority} delivers ${site.gpgLow}–${site.gpgHigh} GPG water to every ${site.city} home. Full hardness data, WQA classification, and treatment recommendations.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Water Quality" }]}
     heading={`${site.city} Water Quality Report | Trusted Local Specialists`}
     primaryCta={primaryCta}

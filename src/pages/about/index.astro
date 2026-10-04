@@ -3,6 +3,12 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import { Image } from "astro:assets";
+import aboutBeforeAfter from "../../assets/images/about-before-after.webp";
+import aboutTeam from "../../assets/images/about-team.webp";
+import aboutHomeowner from "../../assets/images/about-homeowner.webp";
+import aboutFounders from "../../assets/images/about-founders.webp";
+import aboutCleanWater from "../../assets/images/about-clean-water.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -122,13 +128,7 @@ const faqs = [
         <h2>What We Do | Water Softener {site.city} {site.stateAbbr} Services</h2>
       </div>
       <div class="about-media-wrap">
-        <img
-          src={`https://placehold.co/900x400/${site.design.primaryColor.replace("#", "")}/${site.design.primaryLight.replace("#", "")}?text=Before+%2F+After+Hard+Water+Results`}
-          alt="Before and after comparison of hard water vs soft water results"
-          width="900"
-          height="400"
-          loading="lazy"
-        />
+        <Image src={aboutBeforeAfter} alt="Before and after comparison of hard water vs soft water results" width={900} height={400} loading="lazy" />
       </div>
       <div class="grid grid-2">
         {services.map((s) => (
@@ -149,13 +149,7 @@ const faqs = [
         <h2>What Makes {site.businessName} Different | Water Softener {site.city} {site.stateAbbr} Experts</h2>
       </div>
       <div class="about-media-wrap">
-        <img
-          src={`https://placehold.co/900x400/${site.design.accentColor.replace("#", "")}/ffffff?text=Team+On+A+Service+Call`}
-          alt="Team working on installation or service call"
-          width="900"
-          height="400"
-          loading="lazy"
-        />
+        <Image src={aboutTeam} alt="Team working on installation or service call" width={900} height={400} loading="lazy" />
       </div>
       <div class="grid grid-3">
         {differentiators.map((d) => (
@@ -175,13 +169,7 @@ const faqs = [
         <h2>Who Uses Our Water Softener {site.city} {site.stateAbbr} Services</h2>
       </div>
       <div class="about-media-wrap">
-        <img
-          src={`https://placehold.co/900x400/${site.design.primaryColor.replace("#", "")}/${site.design.primaryLight.replace("#", "")}?text=Happy+Homeowner`}
-          alt="Happy homeowner using clean water at home"
-          width="900"
-          height="400"
-          loading="lazy"
-        />
+        <Image src={aboutHomeowner} alt="Happy homeowner using clean water at home" width={900} height={400} loading="lazy" />
       </div>
       <ul class="about-audience-list">
         {audiences.map((a) => <li>{a}</li>)}
@@ -196,13 +184,7 @@ const faqs = [
         <h2>The Team Behind {site.businessName}</h2>
       </div>
       <div class="about-media-wrap">
-        <img
-          src={`https://placehold.co/700x500/${site.design.accentColor.replace("#", "")}/ffffff?text=Founders`}
-          alt="Founders portrait"
-          width="700"
-          height="500"
-          loading="lazy"
-        />
+        <Image src={aboutFounders} alt="Founders portrait" width={700} height={500} loading="lazy" />
       </div>
       <p>
         {site.businessName} was founded by {site.founderNames}, specialists in plumbing and water
@@ -289,13 +271,7 @@ const faqs = [
         <h2>Frequently Asked Questions | Water Softener {site.city} {site.stateAbbr}</h2>
       </div>
       <div class="about-media-wrap">
-        <img
-          src={`https://placehold.co/900x300/${site.design.accentColor.replace("#", "")}/ffffff?text=Clean+Water+Flowing`}
-          alt="Close up of clean water flowing"
-          width="900"
-          height="300"
-          loading="lazy"
-        />
+        <Image src={aboutCleanWater} alt="Close up of clean water flowing" width={900} height={300} loading="lazy" />
       </div>
       <div class="faq-list">
         {faqs.map((item) => (

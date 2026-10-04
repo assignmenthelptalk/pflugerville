@@ -3,6 +3,7 @@ import Layout from "../components/Layout.astro";
 import HomeLink from "../components/HomeLink.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../lib/site";
+import headerImage from "../assets/images/installation-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -13,7 +14,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   title={`Water Softener Installation in ${site.city}, ${site.stateAbbr}`}
   description={`Professional water softener installation in ${site.city}, ${site.stateAbbr}. Sized for ${site.gpgLow}–${site.gpgHigh} GPG from ${site.waterAuthority}. Free water test included. Same day service. No obligation.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Installation" }]}
     heading={`Water Softener Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}
@@ -21,7 +22,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   >
     <p slot="opening">
       <HomeLink variant="naked" />
-      {" "}offers professional water softener installation and sizing services across {site.city} and
+      {" "}offers professional water softener installation and sizing services across {site.city} and{" "}
       {site.county}. Every installation is sized to {site.city}'s {site.gpgLow}–{site.gpgHigh} GPG reading
       from {site.waterAuthority} and your household water usage, not a statewide estimate. Licensed and
       insured. Free in-home water hardness test included with every consultation. Written quote before any

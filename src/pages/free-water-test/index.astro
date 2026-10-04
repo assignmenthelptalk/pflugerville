@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/free-water-test-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -39,7 +40,7 @@ const faqs = [
   title={`Free Water Test in ${site.city}, ${site.stateAbbr}`}
   description={`Book a free in-home water hardness test in ${site.city}. No obligation, a written recommendation, and confirmation of ${site.waterAuthority}'s ${site.gpgLow}-${site.gpgHigh} GPG reading at your own tap.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Water Quality", href: "/water-quality/" }, { label: "Free Water Test" }]}
     heading={`Free Water Test in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

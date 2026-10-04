@@ -3,6 +3,7 @@ import Layout from "../components/Layout.astro";
 import HomeLink from "../components/HomeLink.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../lib/site";
+import headerImage from "../assets/images/faq-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -100,7 +101,7 @@ const faqSchema = {
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "FAQ" }]}
     heading={`Water Softener FAQ in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}
@@ -109,7 +110,7 @@ const faqSchema = {
     <p slot="opening">
       <HomeLink variant="exact" />
       {" "}provides water softener information and consultation services across {site.city} and {site.county}.
-      The questions below cover the most common topics from {site.city} homeowners: water hardness at
+      The questions below cover the most common topics from {site.city} homeowners: water hardness at{" "}
       {site.gpgLow}–{site.gpgHigh} GPG, installation cost, system sizing, repair, and maintenance. Book a free
       in-home water test for a personalised recommendation.
     </p>

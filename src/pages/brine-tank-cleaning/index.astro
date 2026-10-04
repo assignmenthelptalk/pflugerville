@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/brine-tank-cleaning-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -51,7 +52,7 @@ const faqs = [
   title={`Water Softener Brine Tank Cleaning in ${site.city}, ${site.stateAbbr}`}
   description={`Signs your ${site.city} water softener's brine tank needs cleaning, what it costs, and how the process works.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Repair", href: "/repair/" }, { label: "Brine Tank Cleaning" }]}
     heading={`Brine Tank Cleaning in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

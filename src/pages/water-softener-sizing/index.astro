@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/water-softener-sizing-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -37,7 +38,7 @@ const faqs = [
   title={`Water Softener Sizing Guide for ${site.city} Homes`}
   description={`How to size a water softener correctly for ${site.city}'s ${site.gpgLow}-${site.gpgHigh} GPG water, by household size, with the industry-standard grain-capacity formula.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "Sizing Guide" }]}
     heading={`Water Softener Sizing in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

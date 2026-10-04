@@ -4,6 +4,7 @@ import HomeLink from "../components/HomeLink.astro";
 import PageHero from "../components/PageHero.astro";
 import QuoteForm from "../components/QuoteForm.astro";
 import { site } from "../lib/site";
+import headerImage from "../assets/images/quote-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -14,7 +15,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   title={`Get a Free Water Softener Quote — ${site.city}`}
   description={`Request a free, no-obligation water softener quote for your home in ${site.city}, ${site.stateAbbr}.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Get a Quote" }]}
     heading={`Free Water Softener Quote in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}
@@ -23,7 +24,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
     <p slot="opening">
       <HomeLink variant="exact" />
       {" "}provides free water testing and no-obligation quotes across {site.city} and {site.county}. Every
-      quote starts with a free in-home water hardness test. We confirm your exact GPG reading from
+      quote starts with a free in-home water hardness test. We confirm your exact GPG reading from{" "}
       {site.waterAuthority} before recommending any system. Pricing confirmed in writing before any work
       begins. No surprise charges. No obligation to proceed.
     </p>
