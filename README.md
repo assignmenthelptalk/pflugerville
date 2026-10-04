@@ -1,64 +1,94 @@
-# water-softener-boilerplate
+# pflugervillewatersoftener
 
-The factory template for a portfolio of exact-match-domain, rank-and-rent
-water softener lead-generation sites. **This repo is never deployed as a
-live site** — it exists to be cloned once per city.
+Rank-and-rent local lead-generation site for water softener services in
+Pflugerville, TX (`pflugervillewatersoftener.com`). Built with Astro (static
+output). Deployed via Vercel on push to `main`.
 
-Stack: Astro (static output) · Keystatic (local storage in this repo,
-GitHub storage once cloned to a live city site) · formsubmit.co for lead
-delivery. Workflow: local laptop → GitHub → Vercel auto-deploy. No VPS, no
-staging server, no server-side rendering.
+Cloned from the `water-softener-boilerplate` template — see that repo's
+`PROVISION.md` for how sites like this one get created.
 
-## What this is
+Repo: https://github.com/assignmenthelptalk/pflugerville
 
-- A city-agnostic set of 22 pages (home, water quality, hard water,
-  installation, comparison, FAQ, neighbourhoods, quote, products,
-  repair, resin bed replacement, brine tank cleaning, whole home
-  filtration, reverse osmosis, about, contact, salt-based-installation,
-  salt-free-installation, water-softener-sizing,
-  new-construction-installation, control-head-repair, free-water-test)
-  that read every piece of city-specific data from `src/site.config.ts` —
-  never hardcoded. Plus an optional, QDP-gated `[serviceArea]` dynamic
-  route (see PROVISION.md Step 5c) that extends a city toward the
-  portfolio's Core 30 page-count target — see the `local-gbp-core30`
-  skill in Local-SEO-Toolkit for that planning workflow.
-- A single config file (`src/site.config.ts`) that is the only thing you
-  edit to turn this into a specific city's site.
-- A Keystatic singleton for the business identity fields (phone, email,
-  address, hero copy) that get set once a site is rented, without touching
-  code.
+## Status
 
-## What this is not
+| Item | State |
+|------|-------|
+| Site built from boilerplate (23 pages, 0 build errors/warnings) | Done |
+| City data in `site.config.ts` (sourced, see below) | Done |
+| Local content (water quality, hard water, FAQ) | Done |
+| Homepage neighbourhood map | Done |
+| Logo, favicon, branded images | Done |
+| Content quality gate (PROVISION.md Step 6b) | Not run |
+| Vercel project and domain (Steps 7-8) | Not done |
+| Google Search Console and citations (Steps 9-10) | Not done |
+| Tenant phone, email, address, About-page facts | Placeholders until a tenant signs |
 
-- Not a live site. `vercel.json` sets `"public": false` and this repo has
-  no Vercel project attached to it.
-- Not multi-tenant — each city gets its own repo, cloned from this one.
+## City data and sources
 
-## Usage
+All city data lives in `src/site.config.ts` — no CMS layer. To update any
+detail after a tenant signs, edit the fields directly and `git push`; Vercel
+rebuilds and redeploys automatically.
 
-See **[PROVISION.md](./PROVISION.md)** for the complete, step-by-step
-process of turning this boilerplate into a deployed city site.
+- **Hardness: 9-10 GPG, "Hard".** Source: City of Pflugerville 2024 Consumer
+  Confidence Report. Highest reported calcium 40.3 ppm and magnesium 16.4 ppm
+  give about 168 mg/L total hardness (2.497 x Ca + 4.118 x Mg), roughly 9.8
+  GPG. A third-party source lists 177.5 mg/L (10.4 GPG). The 14-17 GPG figure
+  in the boilerplate's target-cities table was not supported by the utility
+  report and was replaced.
+- **Water source:** Lake Pflugerville surface water (pumped from the Colorado
+  River, originating in the Highland Lakes) plus Edwards Aquifer groundwater.
+- **Authority:** City of Pflugerville Public Utilities.
+- **County / population:** Travis County, 65,191 (2020 Census).
 
-## Target cities
+### Still to verify
 
-15 exact-match domains, provisioned one at a time from this boilerplate via
-[PROVISION.md](./PROVISION.md). Henderson is first; the rest follow in the
-order listed.
+- ZIP code `78728` (78660 and 78691 are Pflugerville ZIPs).
+- Neighbourhood names against Zillow, Realtor.com, or the city site (PROVISION.md
+  Step 5c checklist). Map pin coordinates come from OpenStreetMap.
 
-| # | City | State | Domain | GPG | Search Vol | Status |
-|---|------|-------|--------|-----|------------|--------|
-| 1 | Henderson | NV | watersoftenerhendersonnv.com | 16–18 | 50 | Provisioning |
-| 2 | Minneapolis | MN | watersoftenerminneapolis.com | 15–17 | 170 | Queued |
-| 3 | Salt Lake City | UT | watersoftenersaltlakecityut.com | 8–19 | 110 | Queued |
-| 4 | Lubbock | TX | watersoftenerlubbocktx.com | 20–22 | 110 | Queued |
-| 5 | Mesa | AZ | watersoftenermesaaz.com | 12–22 | 70 | Queued |
-| 6 | Scottsdale | AZ | watersoftenersscottsdaleaz.com | 12–20 | 70 | Queued |
-| 7 | Albuquerque | NM | watersofteneralbuquerque.com | 10–16 | 170 | Queued |
-| 8 | New Braunfels | TX | watersoftenernewbraunfelstx.com | 15–18 | 90 | Queued |
-| 9 | Round Rock | TX | watersoftenerroundrocktx.com | 20–28 | 140 | Queued |
-| 10 | Midland | TX | watersoftenermidlandtx.com | 18–22 | 70 | Queued |
-| 11 | Katy | TX | watersoftenerkatytx.com | 12–16 | 70 | Queued |
-| 12 | Fishers | IN | watersoftenerfishers.com | 18 | 50 | Queued |
-| 13 | Pflugerville | TX | watersoftenerpflugervilletx.com | 14–17 | 50 | Queued |
-| 14 | St. George | UT | watersoftenerstgeorgeutah.com | 13–24 | 140 | Provisioning |
-| 15 | Georgetown | TX | watersoftenergeorgetowntx.com | 14–17 | 70 | Queued |
+## Content
+
+22 pages read from the config, plus a QDP-gated `[serviceArea]` dynamic route
+(see PROVISION.md Step 5c). No service areas are provisioned yet.
+
+Pflugerville-specific additions on top of the boilerplate:
+
+- `water-quality`: table of the report's 2024 mineral readings and a "where
+  the water comes from" section.
+- `hard-water`: "Why Pflugerville water is hard" section.
+- `faq`: three Pflugerville-specific questions.
+
+## Map
+
+`src/components/PflugervilleMap.astro` (Leaflet, OpenStreetMap tiles with a CSS
+inversion filter — do not switch to CARTO or Stadia, see CLAUDE.md). The map is
+static: no zoom controls, no scroll/touch zoom, no panning. It frames itself
+once around the neighbourhood pins on load and the first neighbourhood
+(Falcon Pointe) is preselected so the report panel is never empty.
+
+## Logo, favicon, and images
+
+- `public/logo.svg`: full lockup (ring emblem plus "PFLUGERVILLE / WATER /
+  SOFTENER").
+- `public/favicon.svg`: the ring emblem alone. The site header uses the same
+  emblem inline with the business name from the config.
+- `src/assets/images/`: 25 WebP images (1408x768) wired into the homepage,
+  17 page headers, and the About page. Each carries a semi-transparent logo
+  badge baked into one corner.
+- `brand_assets/unbranded-images/`: the originals without the badge.
+- `scripts/brand_images.py`: re-applies the badge. Run it after replacing an
+  original (the docstring explains the logo render input). `BADGE_OPACITY` sets
+  the transparency.
+- `brand_assets/unused-images/`: five generated images that show New Mexico
+  adobe homes and don't fit Pflugerville. Not part of the site.
+- `IMAGE-PROMPTS.md`: the generation prompts. Neighbourhood, new-construction,
+  contact, and the About page header have no image yet and show the hardness
+  stat card instead.
+
+## Development
+
+```
+npm install
+npm run dev      # local dev server
+npm run build    # astro check && astro build — must complete with 0 errors, 0 warnings
+```
