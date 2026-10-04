@@ -3,6 +3,7 @@ import Layout from "../../components/Layout.astro";
 import HomeLink from "../../components/HomeLink.astro";
 import PageHero from "../../components/PageHero.astro";
 import { site } from "../../lib/site";
+import headerImage from "../../assets/images/new-construction-installation-header.webp";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
@@ -28,7 +29,7 @@ const faqs = [
   title={`New Construction Water Softener Installation, ${site.city}`}
   description={`Plan water softener rough-in for a new ${site.city} home — loop placement, drain line, and builder coordination before drywall.`}
 >
-  <PageHero
+  <PageHero image={headerImage}
     breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "New Construction" }]}
     heading={`New Construction Water Softener Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

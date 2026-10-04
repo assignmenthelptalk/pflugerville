@@ -72,18 +72,18 @@ once around the neighbourhood pins on load and the first neighbourhood
   SOFTENER").
 - `public/favicon.svg`: the ring emblem alone. The site header uses the same
   emblem inline with the business name from the config.
-- `src/assets/images/`: 25 WebP images (1408x768) wired into the homepage,
-  17 page headers, and the About page. Each carries a semi-transparent logo
-  badge baked into one corner.
+- `src/assets/images/`: 27 WebP images wired into the homepage (including the
+  "Why We're the Best" section photo, `best-section.webp`), 18 page headers,
+  and the About page. Each carries a semi-transparent logo badge baked into one
+  corner.
 - `brand_assets/unbranded-images/`: the originals without the badge.
 - `scripts/brand_images.py`: re-applies the badge. Run it after replacing an
   original (the docstring explains the logo render input). `BADGE_OPACITY` sets
   the transparency.
 - `brand_assets/unused-images/`: five generated images that show New Mexico
   adobe homes and don't fit Pflugerville. Not part of the site.
-- `IMAGE-PROMPTS.md`: the generation prompts. Neighbourhood, new-construction,
-  contact, and the About page header have no image yet and show the hardness
-  stat card instead.
+- `IMAGE-PROMPTS.md`: the generation prompts. Neighbourhood, contact, and the
+  About page header have no image yet and show the hardness stat card instead.
 
 ## Development
 

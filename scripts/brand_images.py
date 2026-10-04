@@ -32,15 +32,23 @@ SIDE_MARGIN_BY_NAME = {
     "about-founders": 200,       # 700x500 crop
 }
 BADGE_OPACITY = 0.7   # 1.0 = solid, lower = more see-through
+# 1200px-wide 4:3 photos are shown smaller than the 1408px ones, so the badge
+# is drawn relatively larger and sits closer to the corner.
+LOGO_WIDTH_BY_NAME = {
+    "best-section": 360,
+    "new-construction-installation-header": 330,
+}
+SIDE_MARGIN_BY_NAME.update({"best-section": 100, "new-construction-installation-header": 70})
+BOTTOM_MARGIN_BY_NAME.update({"best-section": 70, "new-construction-installation-header": 50})
 PAD = 14
 LOGO_WIDTH = 300
 
 
-def badge(logo_path: Path) -> Image.Image:
+def badge(logo_path: Path, width: int = LOGO_WIDTH) -> Image.Image:
     logo = Image.open(logo_path).convert("RGBA")
     logo = logo.crop(logo.getbbox())
-    h = round(logo.height * LOGO_WIDTH / logo.width)
-    logo = logo.resize((LOGO_WIDTH, h), Image.LANCZOS)
+    h = round(logo.height * width / logo.width)
+    logo = logo.resize((width, h), Image.LANCZOS)
     w, hh = logo.width + PAD * 2, logo.height + PAD * 2
     pill = Image.new("RGBA", (w, hh), (0, 0, 0, 0))
     ImageDraw.Draw(pill).rounded_rectangle((0, 0, w - 1, hh - 1), radius=18, fill=(255, 255, 255, 230))
@@ -50,9 +58,9 @@ def badge(logo_path: Path) -> Image.Image:
 
 
 def main(logo_path: str) -> None:
-    pill = badge(Path(logo_path))
     for src in sorted(SRC.glob("*.webp")):
         im = Image.open(src).convert("RGBA")
+        pill = badge(Path(logo_path), LOGO_WIDTH_BY_NAME.get(src.stem, LOGO_WIDTH))
         bottom = BOTTOM_MARGIN_BY_NAME.get(src.stem, BOTTOM_MARGIN)
         x = im.width - SIDE_MARGIN_BY_NAME.get(src.stem, SIDE_MARGIN) - pill.width
         y = im.height - bottom - pill.height
