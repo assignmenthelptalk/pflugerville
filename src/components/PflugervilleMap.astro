@@ -19,13 +19,6 @@ import { site } from "../lib/site";
       <!-- Left: map -->
       <div class="city-map-left">
         <div id="city-map"></div>
-        <button
-          class="map-reset-btn"
-          id="map-reset-btn"
-          aria-label={`Reset map to ${site.city} view`}
-        >
-          ⌖ Reset View
-        </button>
         <div class="map-legend" aria-hidden="true">
           <span class="legend-selected">● Selected Area</span>
           <span class="legend-available">○ Available Data</span>
@@ -90,7 +83,7 @@ import { site } from "../lib/site";
     </div>
 
     <p class="map-footnote">
-      All {site.city} neighbourhoods receive water from {site.waterAuthority}
+      All {site.city} neighbourhoods receive water from {site.waterAuthority}{" "}
       at a consistent {site.gpgLow}–{site.gpgHigh} GPG hardness level.
     </p>
 
@@ -473,24 +466,6 @@ import { site } from "../lib/site";
     // Find coordinates using: https://www.openstreetmap.org (right-click → Show address)
     // Find the bounding box using: https://boundingbox.klokantech.com
     // ─────────────────────────────────────────────────────────────────
-    const CITY_LAT = 30.4394; // Pflugerville city centre (OpenStreetMap)
-    const CITY_LNG = -97.62;
-    const BOUNDS_SOUTH = 30.38; // OSM bounding box for Pflugerville, padded slightly
-    const BOUNDS_WEST = -97.69;
-    const BOUNDS_NORTH = 30.52;
-    const BOUNDS_EAST = -97.5;
-
-    const MAP_CONFIG = {
-      centre: [CITY_LAT, CITY_LNG] as [number, number],
-      zoom: 12,
-      minZoom: 11, // prevents zooming out to show the wider metro area
-      maxZoom: 14,
-      bounds: {
-        sw: [BOUNDS_SOUTH, BOUNDS_WEST] as [number, number],
-        ne: [BOUNDS_NORTH, BOUNDS_EAST] as [number, number],
-      },
-    };
-
     // All Pflugerville neighbourhoods share one municipal supply, so the
     // GPG range is the city-wide figure from the City of Pflugerville 2024
     // Consumer Confidence Report (see site.config.ts).
@@ -557,14 +532,32 @@ import { site } from "../lib/site";
 
         const L = (await import("leaflet")).default;
 
+    // Static map: no zoom controls, wheel/touch/double-click zoom, or panning.
+    // The view is framed once around the neighbourhood pins and then locked.
     const map = L.map(mapEl, {
-      center: MAP_CONFIG.centre,
-      zoom: MAP_CONFIG.zoom,
-      minZoom: MAP_CONFIG.minZoom,
-      maxZoom: MAP_CONFIG.maxZoom,
-      zoomControl: true,
+      zoomControl: false,
+      dragging: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      touchZoom: false,
+      boxZoom: false,
+      keyboard: false,
+      zoomSnap: 0.25,
       attributionControl: true,
     });
+
+    const pinBounds = L.latLngBounds(neighbourhoods.map((hood) => hood.coords));
+    function frameMap() {
+      map.invalidateSize();
+      map.setMinZoom(1);
+      map.setMaxZoom(18);
+      map.fitBounds(pinBounds, { padding: [48, 48], animate: false });
+      const lockedZoom = map.getZoom();
+      map.setMinZoom(lockedZoom);
+      map.setMaxZoom(lockedZoom);
+    }
+    frameMap();
+    window.addEventListener("resize", frameMap);
 
     // ── TILE LAYER ──
     // OSM with CSS inversion — dark navy aesthetic, no API key required.
@@ -577,13 +570,6 @@ import { site } from "../lib/site";
       subdomains: "abc",
       maxZoom: 19,
     }).addTo(map);
-
-    // ── BOUNDS LOCK ──
-    const cityBounds = L.latLngBounds(MAP_CONFIG.bounds.sw, MAP_CONFIG.bounds.ne);
-    map.setMaxBounds(cityBounds);
-    map.on("drag", () => {
-      map.panInsideBounds(cityBounds, { animate: false });
-    });
 
     // ── PIN ICONS ──
     function defaultIcon() {
@@ -621,15 +607,6 @@ import { site } from "../lib/site";
     const reportIssues = document.getElementById("report-issues");
     const reportCta = document.getElementById("report-cta");
 
-    // ── RESET VIEW BUTTON ──
-    const resetBtn = document.getElementById("map-reset-btn");
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => {
-        map.setView(MAP_CONFIG.centre, MAP_CONFIG.zoom, { animate: true });
-        if (activePopup) map.closePopup(activePopup);
-      });
-    }
-
     // ── MARKERS ──
     let activeMarker: ReturnType<typeof L.marker> | null = null;
     let activePopup: ReturnType<typeof L.popup> | null = null;
@@ -663,9 +640,6 @@ import { site } from "../lib/site";
 
         marker.setIcon(activeIcon());
         activeMarker = marker;
-
-        // Centre map on clicked neighbourhood
-        map.setView(hood.coords, MAP_CONFIG.zoom, { animate: true });
 
         // White label popup on map
         activePopup = L.popup({
