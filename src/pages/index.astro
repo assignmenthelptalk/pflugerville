@@ -5,7 +5,6 @@ import PflugervilleMap from "../components/PflugervilleMap.astro";
 import { site } from "../lib/site";
 import { Image } from "astro:assets";
 import heroImage from "../assets/images/hero-softener.webp";
-import installationTile from "../assets/images/installation-tile.webp";
 import hardWaterTile from "../assets/images/hard-water-tile.webp";
 import bestImage from "../assets/images/best-section.webp";
 
@@ -136,7 +135,7 @@ const faqs = [
             <li>Over $3.7 million in completed projects for hotels, high-rise apartments, industrial facilities, and historic buildings</li>
             <li>Factory-trained and certified by Kinetico, EcoWater, Culligan, Fleck, and Pentair</li>
             <li>Salt-based softeners, salt-free conditioners, reverse osmosis, whole-home filtration, and iron removal, installed to manufacturer warranty standards</li>
-            <li>Hundreds of failed or poorly installed systems from other contractors repaired and rescued</li>
+            <li>Hundreds of failed or poorly installed systems from other contractors <a href="/repair/">repaired and rescued</a></li>
             <li>Lifetime workmanship warranty, 10-year component warranty, and a full replacement guarantee if your system fails to perform</li>
           </ul>
           <a class="best-cta" href="/quote/">Talk to a Water Softener Specialist &rsaquo;</a>
@@ -164,28 +163,8 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 4. Alternating image-text 1 of 4 — text left, image right -->
+  <!-- 5. Hard water effects — image left, text right -->
   <section class="section">
-    <div class="service-section-wrapper">
-      <h2 class="service-section-title">Water Softener Installation in {site.city}, {site.stateAbbr}</h2>
-      <div class="service-section-grid">
-        <div class="service-section-text">
-          <p>
-            Every installation is sized to {site.city}'s {site.gpgLow}-{site.gpgHigh} GPG reading and your
-            household's water usage, not a statewide estimate. Most installations complete in a single visit,
-            and a free water test is included with every consultation.
-          </p>
-          <a class="service-learn-more" href="/installation/">See Installation Details →</a>
-        </div>
-        <div class="service-section-media">
-          <Image src={installationTile} alt={`Water softener installation in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Alternating image-text 2 of 4 — image left, text right -->
-  <section class="section" style="background: var(--color-surface);">
     <div class="service-section-wrapper">
       <h2 class="service-section-title">Hard Water Effects in {site.city}, {site.stateAbbr}</h2>
       <div class="service-section-grid service-section-grid-reverse">
@@ -555,6 +534,8 @@ const faqs = [
       color: var(--color-text);
     }
     .best-list li { display: list-item; }
+    .best-list a { color: var(--color-primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .best-list a:hover { color: var(--color-accent); }
     .best-list li::marker { color: var(--color-accent); }
     .best-cta {
       display: inline-block;
