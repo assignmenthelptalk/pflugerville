@@ -150,6 +150,9 @@ export interface SiteConfig {
   state: string;
   /** Two-letter state abbreviation, e.g. "NV" */
   stateAbbr: string;
+  /** Wider region the business serves, used in the homepage "Why We're the
+   * Best" heading, e.g. "Greater Austin" */
+  region: string;
   /** Live domain, no protocol, no trailing slash, e.g. "lasvegaswatersoftener.com" */
   domain: string;
 
@@ -275,6 +278,7 @@ export const siteConfig: SiteConfig = {
   city: "Pflugerville",
   state: "Texas",
   stateAbbr: "TX",
+  region: "Greater Austin",
   domain,
 
   // Water hardness data
