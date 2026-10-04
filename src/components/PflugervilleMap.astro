@@ -611,10 +611,13 @@ import { site } from "../lib/site";
     let activeMarker: ReturnType<typeof L.marker> | null = null;
     let activePopup: ReturnType<typeof L.popup> | null = null;
 
+    const markers: ReturnType<typeof L.marker>[] = [];
+
     neighbourhoods.forEach((hood) => {
       const marker = L.marker(hood.coords, { icon: defaultIcon() }).addTo(map);
 
       // Hover tooltip — name and GPG reading on mouseover
+      markers.push(marker);
       marker.bindTooltip(
         `<div class="map-hover-tooltip">
            <span class="tooltip-name">${hood.name}</span>
@@ -646,6 +649,7 @@ import { site } from "../lib/site";
           closeButton: false,
           className: "map-label-popup",
           offset: [0, -12],
+          autoPan: false, // keep the static map view fixed
         })
           .setLatLng(hood.coords)
           .setContent(`<strong>${hood.name}</strong>`)
@@ -672,5 +676,8 @@ import { site } from "../lib/site";
         if (reportCta) reportCta.textContent = `Free Consultation for ${hood.name} →`;
       });
     });
+
+    // Open with the first neighbourhood selected so the report is never empty.
+    markers[0]?.fire("click");
   });
 </script>
