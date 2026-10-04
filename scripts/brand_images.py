@@ -31,6 +31,7 @@ SIDE_MARGIN_BY_NAME = {
     "about-clean-water": 40,
     "about-founders": 200,       # 700x500 crop
 }
+BADGE_OPACITY = 0.7   # 1.0 = solid, lower = more see-through
 PAD = 14
 LOGO_WIDTH = 300
 
@@ -44,6 +45,7 @@ def badge(logo_path: Path) -> Image.Image:
     pill = Image.new("RGBA", (w, hh), (0, 0, 0, 0))
     ImageDraw.Draw(pill).rounded_rectangle((0, 0, w - 1, hh - 1), radius=18, fill=(255, 255, 255, 230))
     pill.alpha_composite(logo, (PAD, PAD))
+    pill.putalpha(pill.getchannel("A").point(lambda a: round(a * BADGE_OPACITY)))
     return pill
 
 
